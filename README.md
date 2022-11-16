@@ -3,7 +3,7 @@
 
 Send Nomad deployment messages to slack in GO Lang
 
-# Deployment
+# Deployment
 
 Application can be launched using docker  
 For example inside a Nomad. Don't forget to change Slack stuff.
