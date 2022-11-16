@@ -15,7 +15,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
 #ARG VERSION
 RUN --mount=type=cache,target=/go/pkg/mod \
    --mount=type=cache,target=/root/.cache/go-build \
-   CGO_ENABLED=0 go build  -installsuffix cgo -ldflags "-X main.version=1" -o ./nomad-deploy .
+   CGO_ENABLED=0 go build  -installsuffix cgo -ldflags "-X main.version=1" ./cmd/bot/main.go -o ./nomad-deploy .
 #
 #
 FROM phusion/baseimage:focal-1.2.0
