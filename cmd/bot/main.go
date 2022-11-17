@@ -6,11 +6,13 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"reflect"
+	"strconv"
 
 	"github.com/Allan-Nava/Nomad-Deploy-Notifier/internal/bot"
 	"github.com/Allan-Nava/Nomad-Deploy-Notifier/internal/stream"
 )
-//var DEBUG = false
+//
 //
 func main() {
 	os.Exit(realMain(os.Args))
@@ -22,7 +24,9 @@ func realMain(args []string) int {
     //
 	token := os.Getenv("SLACK_TOKEN")
 	toChannel := os.Getenv("SLACK_CHANNEL")
-    //debug := os.Getenv("DEBUG")
+    debug := os.Getenv("DEBUG")
+	log.Println("Before :", reflect.TypeOf(debug))
+	debugBol,_ := strconv.ParseBool(debug)
     //
 	if token == ""{
 		log.Fatal("SLACK_TOKEN is empty: ", token)
@@ -36,7 +40,7 @@ func realMain(args []string) int {
 		Channel: toChannel,
 	}
     // 
-	stream := stream.NewStream()
+	stream := stream.NewStream(debugBol)
     //
 	slackBot, err := bot.NewBot(slackCfg)
 	if err != nil {

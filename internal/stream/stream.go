@@ -3,6 +3,7 @@ package stream
 import (
 	"context"
 	"os"
+	"log"
 
 	"github.com/Allan-Nava/Nomad-Deploy-Notifier/internal/bot"
 	"github.com/hashicorp/go-hclog"
@@ -12,17 +13,22 @@ import (
 type Stream struct {
 	nomad *api.Client
 	L     hclog.Logger
+	Debug bool
 }
 
-func NewStream() *Stream {
+func NewStream(debug bool) *Stream {
 	client, _ := api.NewClient(&api.Config{})
 	return &Stream{
 		nomad: client,
 		L:     hclog.Default(),
+		Debug: debug
 	}
 }
 
 func (s *Stream) Subscribe(ctx context.Context, slack *bot.Bot) {
+	if s.Debug {
+		log.Println("Subscribe method()")
+	}
 	events := s.nomad.EventStream()
 
 	topics := map[api.Topic][]string{
