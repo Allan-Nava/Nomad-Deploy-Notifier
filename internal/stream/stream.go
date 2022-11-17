@@ -21,7 +21,7 @@ func NewStream(debug bool) *Stream {
 	return &Stream{
 		nomad: client,
 		L:     hclog.Default(),
-		Debug: debug
+		Debug: debug,
 	}
 }
 
