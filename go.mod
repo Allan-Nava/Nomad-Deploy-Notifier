@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/hashicorp/go-hclog v1.4.0
 	github.com/hashicorp/nomad/api v0.0.0-20201115152218-974039ba8bf6
-	github.com/slack-go/slack v0.12.0
+	github.com/slack-go/slack v0.12.1
 )
 
 require (
